@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter
+@WebFilter("/userProfile")
 public class UserProfileFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
