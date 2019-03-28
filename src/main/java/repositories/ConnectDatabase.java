@@ -1,10 +1,16 @@
-package database;
+package repositories;
+
+import models.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectDatabase {
-    public static void main(String[] args) {
+    public static List<User> userDB = new ArrayList<User>(); //TODO zamien na baze
+
+    public static void connect() {
         Connection con = null;
 
         try {

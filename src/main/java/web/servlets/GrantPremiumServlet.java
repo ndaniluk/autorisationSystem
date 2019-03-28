@@ -1,14 +1,13 @@
-package web;
+package web.servlets;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/grantPremium")
+public class GrantPremiumServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response){
 
     }
 }
-

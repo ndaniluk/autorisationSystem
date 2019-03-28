@@ -1,22 +1,22 @@
-package user;
+package models;
 
 public class User {
-    private int id;
     private String username;
+    private String password;
     private boolean isPremium;
 
-    public User(int id, String username, boolean isPremium) {
-        this.id = id;
+    public User(String username, String password, boolean isPremium) {
         this.username = username;
+        this.password = password;
         this.isPremium = isPremium;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public boolean isPremium() {
