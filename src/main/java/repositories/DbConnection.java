@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConnectDatabase {
+public class DbConnection {
     public static List<User> userDB = new ArrayList<User>(); //TODO zamien na baze
 
     public static void connect() {

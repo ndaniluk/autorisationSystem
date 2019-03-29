@@ -1,7 +1,7 @@
 package web.servlets;
 
 import models.User;
-import web.PasswordAuth;
+import models.UserUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,34 +11,21 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
-import static repositories.ConnectDatabase.userDB;
+import static repositories.DbConnection.userDB;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User user;
+        UserUtils userUtils = new UserUtils();
         try {
-            user = retrieveUserFromRequest(request);
+            User user = userUtils.retrieveUserFromRequest(request);
             userDB.add(user);
-
-            response.sendRedirect("/userProfile");
+            response.sendRedirect("/login");
         } catch (InvalidKeySpecException e) {
             response.getWriter().println("Wrong key in SecretKeyFactory");
         } catch (NoSuchAlgorithmException e) {
             response.getWriter().println("Wrong hashing algorithm");
         }
-    }
-
-    private User retrieveUserFromRequest(HttpServletRequest request) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        boolean isPremium = Boolean.parseBoolean(request.getParameter("isPremium"));
-
-        PasswordAuth passwordAuth = new PasswordAuth();
-        password = passwordAuth.hashPassword(password);
-
-        return new User(username, password, isPremium);
-
     }
 }
 
