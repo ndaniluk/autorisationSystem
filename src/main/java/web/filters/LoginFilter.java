@@ -6,6 +6,10 @@ import web.PasswordAuth;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+import static repositories.ConnectDatabase.userDB;
 
 @WebFilter("/login")
 public class LoginFilter implements Filter {
@@ -19,12 +23,19 @@ public class LoginFilter implements Filter {
 
         DbOperations dbOperations = new DbOperations();
         PasswordAuth passwordAuth = new PasswordAuth();
+        int userIndex = dbOperations.checkUsername(username);
 
-        if (dbOperations.checkUsername(username)) {
-            if (passwordAuth.validatePassword(password)) {
-                chain.doFilter(request, response);
-            } else
-                response.getWriter().println("Invalid password");
+        if (userIndex >= 0) {
+            try {
+                if (passwordAuth.validatePassword(userDB.get(userIndex).getPassword(), password)) {
+                    chain.doFilter(request, response);
+                } else
+                    response.getWriter().println("Invalid password");
+            } catch (InvalidKeySpecException e) {
+                response.getWriter().println("Wrong key in SecretKeyFactory");
+            } catch (NoSuchAlgorithmException e) {
+                response.getWriter().println("Wrong hashing algorithm");
+            }
         } else
             response.getWriter().println("Invalid username");
     }

@@ -11,7 +11,6 @@ public class GrantPremiumFilter implements Filter {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
     }
 
     public void destroy() {

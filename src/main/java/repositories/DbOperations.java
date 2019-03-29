@@ -1,16 +1,14 @@
 package repositories;
 
-import models.User;
-
 import static repositories.ConnectDatabase.userDB;
 
 public class DbOperations {
-    public boolean checkUsername(String username) {
-        for (User user : userDB) {
-            if (user.getUsername().equals(username))
-                return true;
+    public int checkUsername(String username) {
+        for (int i = 0; i < userDB.size(); i++) {
+            if (userDB.get(i).getUsername().equals(username))
+                return i;
         }
-        return false;
+        return -1;
     }
 
     public boolean checkPremium(String isPremium) {
