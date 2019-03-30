@@ -7,8 +7,9 @@
 <body>
 <h2>Grant premium status</h2>
 <br><br>
-
-<label>Username: <input type="text" name="username"></label><br>
-<input type="submit" name="submit" value="Send">
+<form action="grantPremium" method="post">
+    <label>Username: <input type="text" name="username"></label><br>
+    <input type="submit" name="submit" value="Send">
+</form>
 </body>
 </html>

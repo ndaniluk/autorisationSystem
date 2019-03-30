@@ -13,12 +13,17 @@ public class GrantPremiumFilter implements Filter {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String username = request.getParameter("username");
-        UserUtils userUtils = new UserUtils();
-        int userIndex = userUtils.checkUsername(username);
+        if (request.getParameter("username") != null) {
+            String username = request.getParameter("username");
 
-        if (userIndex >= 0){
-            request.setAttribute("id", userIndex);
+            UserUtils userUtils = new UserUtils();
+            int userIndex = userUtils.checkUsername(username);
+
+            if (userIndex >= 0) {
+                request.setAttribute("id", userIndex);
+                chain.doFilter(request, response);
+            }
+        } else {
             chain.doFilter(request, response);
         }
     }

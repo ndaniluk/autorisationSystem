@@ -13,6 +13,10 @@ import java.security.spec.InvalidKeySpecException;
 
 @WebServlet("/grantPremium")
 public class GrantPremiumServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/grantPremium.jsp");
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response){
         UserUtils userUtils = new UserUtils();
         try {

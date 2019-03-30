@@ -21,7 +21,7 @@ public class PremiumAccessFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession();
-        if (!request.getParameter("userObject").isEmpty()) {
+        if (request.getParameter("userObject") != null) {
             User user = (User)session.getAttribute("userObject");
             if(user.isPremium())
                 chain.doFilter(request, response);

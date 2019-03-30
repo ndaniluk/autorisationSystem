@@ -12,7 +12,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.isPremium = false;
-        this.isAdmin = false;
+        this.isAdmin = true;
     }
 
     public String getUsername() {
