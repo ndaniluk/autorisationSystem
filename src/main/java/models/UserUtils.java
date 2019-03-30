@@ -12,12 +12,12 @@ public class UserUtils {
     public User retrieveUserFromRequest(HttpServletRequest request) throws InvalidKeySpecException, NoSuchAlgorithmException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean isPremium = Boolean.parseBoolean(request.getParameter("isPremium"));
+        String email = request.getParameter("email");
 
-        PasswordAuth passwordAuth = new PasswordAuth();
-        password = passwordAuth.hashPassword(password);
+//        PasswordAuth passwordAuth = new PasswordAuth();
+//        password = passwordAuth.hashPassword(password); //TODO hash password
 
-        return new User(username, password, isPremium);
+        return new User(username, password, email);
     }
 
     public int checkUsername (String username){

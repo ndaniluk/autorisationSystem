@@ -23,9 +23,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("userObject", user);
             response.sendRedirect("/userProfile");
         } catch (InvalidKeySpecException e) {
-            response.getWriter().println("Wrong key in SecretKeyFactory");
+            e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
-            response.getWriter().println("Wrong hashing algorithm");
+            e.printStackTrace();
         }
     }
 }

@@ -7,11 +7,12 @@
 <body>
 <h2>Register</h2>
 <br><br>
-
-<label>Username: <input type="text" name="username"></label><br>
-<label>Password: <input type="password" name="password"></label><br>
-<label>Re-type password: <input type="password" name="repassword"></label><br>
-<label>email: <input type="email" name="email"></label><br>
-<input type="submit" name="submit" value="Send">
+<form action="register" method="post">
+    <label>Username: <input type="text" name="username"></label><br>
+    <label>Password: <input type="password" name="password"></label><br>
+    <label>Re-type password: <input type="password" name="repassword"></label><br>
+    <label>email: <input type="email" name="email"></label><br>
+    <input type="submit" name="submit" value="Send">
+</form>
 </body>
 </html>

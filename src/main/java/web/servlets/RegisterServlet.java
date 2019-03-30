@@ -20,11 +20,9 @@ public class RegisterServlet extends HttpServlet {
         try {
             User user = userUtils.retrieveUserFromRequest(request);
             userDB.add(user);
-            response.sendRedirect("/login");
-        } catch (InvalidKeySpecException e) {
-            response.getWriter().println("Wrong key in SecretKeyFactory");
-        } catch (NoSuchAlgorithmException e) {
-            response.getWriter().println("Wrong hashing algorithm");
+            response.sendRedirect("/index.jsp");
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
     }
 }

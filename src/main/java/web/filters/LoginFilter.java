@@ -16,7 +16,7 @@ import static repositories.DbConnection.userDB;
 @WebFilter("/login")
 public class LoginFilter implements Filter {
 
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -35,12 +35,9 @@ public class LoginFilter implements Filter {
             } else
                 response.getWriter().println("Invalid username");
 
-        } catch (InvalidKeySpecException e) {
-            response.getWriter().println("Wrong key in SecretKeyFactory");
-        } catch (NoSuchAlgorithmException e) {
-            response.getWriter().println("Wrong hashing algorithm");
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
-
     }
 
     public void destroy() {

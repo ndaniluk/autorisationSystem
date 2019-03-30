@@ -21,7 +21,7 @@ public class PasswordAuth {
     }
 
     public boolean validatePassword(String oldPassword, String newPassword) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        newPassword = hashPassword(newPassword);
+//        newPassword = hashPassword(newPassword); //TOOD hash
         return oldPassword.equals(newPassword);
     }
 }

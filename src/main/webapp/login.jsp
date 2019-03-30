@@ -8,8 +8,10 @@
 <h2>Sign in</h2>
 <br><br>
 
-<label>Username: <input type="text" name="username"></label><br>
-<label>Password: <input type="password" name="password"></label><br>
-<input type="submit" name="submit" value="Send">
+<form action="login" method="post">
+    <label>Username: <input type="text" name="username"></label><br>
+    <label>Password: <input type="password" name="password"></label><br>
+    <input type="submit" name="submit" value="Send">
+</form>
 </body>
 </html>
