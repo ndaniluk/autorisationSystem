@@ -1,4 +1,6 @@
 <%@ page import="models.User" %>
+<%@ page import="javax.swing.*" %>
+<%@ page import="java.awt.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -13,9 +15,15 @@
     %></h2>
 <br><br>
 <p>This is your profile page</p>
-<img src="..\resources\img\userProfile.jpg">
-
+<%
+    String path = getClass().getResource("/path/to/image.jpg").getFile();
+    <%--ImageIcon image = new ImageIcon(path).getImage();%>--%>
 <a href="usersList">User list</a>
 <a href="premiumZone">Only for Premium</a>
+<%
+    if(user.isAdmin())
+        out.print("<a href='grantPremium'>Grant premium</a>");
+
+%>
 </body>
 </html>

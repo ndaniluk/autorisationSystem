@@ -5,12 +5,14 @@ public class User {
     private String password;
     private String email;
     private boolean isPremium;
+    private boolean isAdmin;
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.isPremium = false;
+        this.isAdmin = false;
     }
 
     public String getUsername() {
@@ -31,5 +33,9 @@ public class User {
 
     public void setPremium(boolean premium) {
         isPremium = premium;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
     }
 }
