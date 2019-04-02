@@ -1,13 +1,16 @@
 package web.filters;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class UsersListFilter implements Filter {
+@WebFilter("/guest/*")
+public class NonAuthenticatedFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -15,12 +18,13 @@ public class UsersListFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
-        if(httpRequest.getSession(false) == null)
-            httpResponse.sendRedirect("/index");
-        else
+        HttpSession session = httpRequest.getSession();
+        session.invalidate();
+        if (session != null || session.getAttribute("userObject") != null) {
+            httpResponse.sendRedirect("/userProfile");
+        } else {
             chain.doFilter(request, response);
-
+        }
     }
 
     @Override

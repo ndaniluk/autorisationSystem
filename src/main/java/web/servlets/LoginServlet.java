@@ -22,9 +22,7 @@ public class LoginServlet extends HttpServlet {
             User user = userUtils.retrieveUserFromRequest(request);
             session.setAttribute("userObject", user);
             response.sendRedirect("/userProfile");
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }

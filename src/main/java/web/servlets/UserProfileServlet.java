@@ -9,6 +9,6 @@ import java.io.IOException;
 @WebServlet("/userProfile")
 public class UserProfileServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("userProfile.jsp");
+        response.sendRedirect("/authenticated/userProfile.jsp");
     }
 }

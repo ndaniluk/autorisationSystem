@@ -1,7 +1,5 @@
 package models;
 
-import web.PasswordAuth;
-
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -28,7 +26,8 @@ public class UserUtils {
         return -1;
     }
 
-    public boolean checkPremium (String isPremium){
-        return isPremium.equals("true") || isPremium.equals("false");
+    public void changePremiumState(boolean state, String username){
+        int userIndex = checkUsername(username);
+        userDB.get(userIndex).setPremium(state);
     }
 }

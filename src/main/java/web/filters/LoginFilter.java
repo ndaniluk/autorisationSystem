@@ -1,8 +1,8 @@
 package web.filters;
 
+import auth.PasswordAuth;
 import models.User;
 import models.UserUtils;
-import web.PasswordAuth;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

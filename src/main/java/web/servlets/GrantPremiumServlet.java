@@ -24,7 +24,8 @@ public class GrantPremiumServlet extends HttpServlet {
             if(user.isPremium())
                 response.getWriter().println("User is already VIP");
             else{
-                user.setPremium(true);
+                userUtils.changePremiumState(true, user.getUsername());
+                request.getSession().setAttribute("isPremium", true);
                 response.getWriter().println("Granted VIP privileges to " + user.getUsername());
             }
         } catch (InvalidKeySpecException | NoSuchAlgorithmException | IOException e) {

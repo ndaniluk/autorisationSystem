@@ -6,7 +6,8 @@
 </head>
 <body>
 <h2>Hello there!</h2>
-<a href="login.jsp">Sign in</a>
-<a href="register.jsp">Sign up</a>
+
+<a href="guest/login.jsp">Sign in</a>
+<a href="guest/register.jsp">Sign up</a>
 </body>
 </html>

@@ -10,26 +10,30 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter({"/premiumZone", "premiumZone.jsp"})
+import static repositories.DbConnection.userDB;
+
+@WebFilter("/premiumZone")
 public class PremiumAccessFilter implements Filter {
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        UserUtils userUtils = new UserUtils();
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpSession session = httpRequest.getSession();
-        if (request.getParameter("userObject") != null) {
-            User user = (User)session.getAttribute("userObject");
-            if(user.isPremium())
+        HttpSession session = httpRequest.getSession(false);
+        if (session != null) {
+            User user = (User) session.getAttribute("userObject");
+
+            UserUtils userUtils = new UserUtils();
+            int userIndex = userUtils.checkUsername(user.getUsername());
+
+            if (userDB.get(userIndex).isPremium())
                 chain.doFilter(request, response);
             else
                 httpResponse.sendRedirect("/userProfile");
-        } else {
-            httpResponse.sendRedirect("/login");
-        }
+        } else
+            chain.doFilter(request, response);
     }
 
     public void destroy() {

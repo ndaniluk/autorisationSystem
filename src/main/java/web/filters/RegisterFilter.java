@@ -2,6 +2,9 @@ package web.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,25 +28,27 @@ public class RegisterFilter implements Filter {
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
         String email = request.getParameter("email");
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpSession session = httpRequest.getSession();
 
-        if (username.length() > 0) {
-            if (password.length() >= 8) {
-                if (password.equals(repassword)) {
-                    if (validate(email)) {
-                        try {
-                            chain.doFilter(request, response);
-                        } catch (ServletException e) {
-                            response.getWriter().println("Can't find /register servlet");
-                        }
+            if (username.length() > 0) {
+                if (password.length() >= 8) {
+                    if (password.equals(repassword)) {
+                        if (validate(email)) {
+                            try {
+                                chain.doFilter(request, response);
+                            } catch (ServletException e) {
+                                response.getWriter().println("Can't find /register servlet");
+                            }
+                        } else
+                            response.getWriter().println("Invalid email address");
                     } else
-                        response.getWriter().println("Invalid email address");
+                        response.getWriter().println("Passwords don't match");
                 } else
-                    response.getWriter().println("Passwords don't match");
+                    response.getWriter().println("Provided password has to be at least 8 characters long");
             } else
-                response.getWriter().println("Provided password has to be at least 8 characters long");
-        } else
-            response.getWriter().println("Empty username provided");
-
+                response.getWriter().println("Empty username provided");
     }
 
     public void destroy() {
