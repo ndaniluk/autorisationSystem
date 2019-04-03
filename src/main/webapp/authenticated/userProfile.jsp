@@ -18,11 +18,11 @@
 <p>This is your profile page</p>
 <br><br>
 
-<a href="usersList.jsp">User list</a>
-<a href="premiumZone.jsp">Only for Premium</a>
+<a href="/usersList">User list</a>
+<a href="/premiumZone">Only for Premium</a>
 <%
     if (user.isAdmin())
-        out.print("<a href='grantPremium.jsp'>Grant premium</a>");
+        out.print("<a href='/grantPremium'>Grant premium</a>");
 %>
 </body>
 </html>

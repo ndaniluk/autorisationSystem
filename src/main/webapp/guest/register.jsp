@@ -7,7 +7,7 @@
 <body>
 <h2>Register</h2>
 <br><br>
-<form action="register" method="post">
+<form action="/register" method="post">
     <label>Username: <input type="text" name="username"></label><br>
     <label>Password: <input type="password" name="password"></label><br>
     <label>Re-type password: <input type="password" name="repassword"></label><br>

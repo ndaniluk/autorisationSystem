@@ -17,14 +17,14 @@ public class DbConnection {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
             //Creating the connection with HSQLDB
             con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb", "SA", "");
-            if (con!= null){
+            if (con != null) {
                 System.out.println("Connection created successfully");
 
-            }else{
+            } else {
                 System.out.println("Problem with creating connection");
             }
 
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace(System.out);
         }
     }

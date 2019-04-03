@@ -18,7 +18,7 @@ public class UserUtils {
         return new User(username, password, email);
     }
 
-    public int checkUsername (String username){
+    public int checkUsername(String username) {
         for (int i = 0; i < userDB.size(); i++) {
             if (userDB.get(i).getUsername().equals(username))
                 return i;
@@ -26,7 +26,7 @@ public class UserUtils {
         return -1;
     }
 
-    public void changePremiumState(boolean state, String username){
+    public void changePremiumState(boolean state, String username) {
         int userIndex = checkUsername(username);
         userDB.get(userIndex).setPremium(state);
     }

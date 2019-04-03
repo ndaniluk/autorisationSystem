@@ -17,13 +17,13 @@ public class GrantPremiumServlet extends HttpServlet {
         response.sendRedirect("/grantPremium.jsp");
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response){
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
         UserUtils userUtils = new UserUtils();
         try {
             User user = userUtils.retrieveUserFromRequest(request);
-            if(user.isPremium())
+            if (user.isPremium())
                 response.getWriter().println("User is already VIP");
-            else{
+            else {
                 userUtils.changePremiumState(true, user.getUsername());
                 request.getSession().setAttribute("isPremium", true);
                 response.getWriter().println("Granted VIP privileges to " + user.getUsername());

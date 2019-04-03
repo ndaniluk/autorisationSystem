@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter("/guest/*")
-public class NonAuthenticatedFilter implements Filter {
+public class GuestFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
 
@@ -19,8 +19,7 @@ public class NonAuthenticatedFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession();
-        session.invalidate();
-        if (session != null || session.getAttribute("userObject") != null) {
+        if (session != null && session.getAttribute("userObject") != null) {
             httpResponse.sendRedirect("/userProfile");
         } else {
             chain.doFilter(request, response);

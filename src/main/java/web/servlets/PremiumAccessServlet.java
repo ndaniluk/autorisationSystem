@@ -9,6 +9,6 @@ import java.io.IOException;
 @WebServlet("/premiumZone")
 public class PremiumAccessServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("premiumZone.jsp");
+        response.sendRedirect("/authenticated/premiumZone.jsp");
     }
 }

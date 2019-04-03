@@ -22,18 +22,15 @@ public class PremiumAccessFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession(false);
-        if (session != null) {
-            User user = (User) session.getAttribute("userObject");
+        User user = (User) session.getAttribute("userObject");
 
-            UserUtils userUtils = new UserUtils();
-            int userIndex = userUtils.checkUsername(user.getUsername());
+        UserUtils userUtils = new UserUtils();
+        int userIndex = userUtils.checkUsername(user.getUsername());
 
-            if (userDB.get(userIndex).isPremium())
-                chain.doFilter(request, response);
-            else
-                httpResponse.sendRedirect("/userProfile");
-        } else
+        if (userDB.get(userIndex).isPremium() || userDB.get(userIndex).isAdmin())
             chain.doFilter(request, response);
+        else
+            httpResponse.sendRedirect("/userProfile");
     }
 
     public void destroy() {
